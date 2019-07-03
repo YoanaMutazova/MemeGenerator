@@ -1,0 +1,17 @@
+.text {
+    border-top: 1px solid #9da1a6;
+    padding-top: 20px;
+}
+
+#registerBtn {
+    text-decoration: none;
+    color: #1a63bd;
+}
+
+#registerBtn:hover {
+    text-decoration: underline;
+}
+
+#registerBtn:visited {
+    color: #1a63bd;
+}

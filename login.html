@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+
+    <title>Meme Generator</title>
+</head>
+
+<body>
+    <div class="pad">
+        <h2>Вход</h2>
+        <form method="POST">
+            <label for="username">Потребителско име</label>
+            <input type="text" id="username">
+            <p class="error" id="usernameError"></p>
+            <label for="password">Парола</label>
+            <input type="password" id="password">
+            <p class="error" id="passwordError"></p>
+            <p class="error" id="generalError"></p>
+            <button class="button" onclick="login(event)">Вход</button>
+            <div>
+                <p class="text">Нов потребител?</p>
+                <a href="register.html" id="registerBtn">Регистрация</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/login.js"></script>
+</body>
+
+</html>

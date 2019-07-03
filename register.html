@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Meme Generator</title>
+</head>
+
+<body>
+    <div class="pad">
+        <h2>РЕГИСТРАЦИЯ</h2>
+        <form method="POST">
+            <label for="username">Потребителско име</label>
+            <input type="text" id="username">
+            <p class="error" id="usernameError"></p>
+            <label for="facultyNumber">Факултетен номер</label>
+            <input type="text" id="facultyNumber">
+            <p class="error" id="facultyNumberError"></p>
+            <label for="password">Парола</label>
+            <input type="password" id="password">
+            <p class="error" id="passwordError"></p>
+            <p class="error" id="generalError"></p>
+            <button class="button" onclick="register(event)">Регистрация</button>
+        </form>
+    </div>
+
+    <script src="js/register.js"></script>
+</body>
+
+</html>
