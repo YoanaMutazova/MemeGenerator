@@ -106,3 +106,7 @@ input[type=file] {
     background-color: #000;
     z-index: 2;
 }
+
+#hiddenImage {
+    opacity: 0;
+}

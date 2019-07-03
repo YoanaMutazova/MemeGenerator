@@ -15,7 +15,8 @@
             echo '<div class="item">';
             echo '<p class="templateName">' . $t["name"] . '</p>';
             echo '<div class="template">';
-            echo '<img src="data:image/jpeg;base64,' . base64_encode($t["image"]) . '" class="templateImage image-' . $t["id"] . '"/>';
+            echo '<img src="data:image/jpeg;base64,' . base64_encode($t["image"]) . '" class="templateImage image-' . $t["id"] . 
+                '" onclick="showTemplate('. $t["id"] . ')"/>';
             echo '</div>';
             echo '</div>';
         }
