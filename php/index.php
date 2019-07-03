@@ -53,9 +53,10 @@
             <div id="textOptions"></div>
             <button id="saveMeme" onclick="saveMeme()">Save meme</button>
         </div>
+        <button id="fieldsButton" onclick="addTextField()">Add text Field</button>
     </div>
 
-    <button id="fieldsButton" onclick="addTextField()">Add text Field</button>
+    
     
     <script src="../js/index.js"></script>
 </body>

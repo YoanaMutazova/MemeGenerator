@@ -30,72 +30,72 @@ function selectTemplate(element) {
     }
 }
 
-// function addText(event) {
-//     event.preventDefault();
+ function addText(event) {
+     event.preventDefault();
 
-//     var text = document.getElementById("memeText").value;
-//     var memeTexts = document.getElementsByClassName("text");
+     var text = document.getElementById("memeText").value;
+     var memeTexts = document.getElementsByClassName("text");
 
-//     var id = memeTexts == 0 ? 1 : memeTexts.length + 1;
+     var id = memeTexts == 0 ? 1 : memeTexts.length + 1;
 
-//     if (id >= 11) {
-//         console.log("You cannot add more texts!");
-//     } else {
-//         var textBox = document.createElement("div");
-//         textBox.className = "text text-" + id;
-//         textBox.innerHTML = text;
+     if (id >= 11) {
+         console.log("You cannot add more texts!");
+     } else {
+         var textBox = document.createElement("div");
+         textBox.className = "text text-" + id;
+         textBox.innerHTML = text;
 
-//         var wrapper = document.getElementById("templateWrapper");
-//         wrapper.appendChild(textBox);
-//     }
-// }
+         var wrapper = document.getElementById("templateWrapper");
+         wrapper.appendChild(textBox);
+     }
+ }
 
-// function saveMeme() {
-//     addTextsToCanvas();
+ function saveMeme() {
+     addTextsToCanvas();
 
-//     var canvas = document.getElementById("memeImage");
+     var canvas = document.getElementById("memeImage");
 
-//     canvas.toBlob(function(blob){
-//         var xhr = new XMLHttpRequest();
+     canvas.toBlob(function(blob){
+         var xhr = new XMLHttpRequest();
 
-//         xhr.open('POST', '../php/saveMeme.php', true);
+         xhr.open('POST', '../php/saveMeme.php', true);
 
-//         xhr.onreadystatechange = function() {
-//             if (xhr.readyState == 4 && xhr.status == 200) {
-//                 console.log("uploaded");
-//             } else {
-//                 console.log("error")
-//             }
-//         }
+         xhr.onreadystatechange = function() {
+             if (xhr.readyState == 4 && xhr.status == 200) {
+                 console.log("uploaded");
+             } else {
+                 console.log("error")
+             }
+         }
 
-//         xhr.send(blob);
-//     }, 'image/jpeg', 0.95);
-// }
+         xhr.send(blob);
+     }, 'image/jpeg', 0.95);
+ }
 
 // function fixBinary (bin) {
 //     var length = bin.length;
 //     var buf = new ArrayBuffer(length);
 //     var arr = new Uint8Array(buf);
-
+//
 //     for (var i = 0; i < length; i++) {
 //         arr[i] = bin.charCodeAt(i);
 //     }
-
+//
 //     return buf;
 // }
 
-// function addTextsToCanvas() {
-//     var texts = document.getElementsByClassName("text");
-//     var canvas = document.getElementById("memeImage");
-//     var ctx = canvas.getContext("2d");
+ function addTextsToCanvas() {
+     var texts = document.getElementsByClassName("text");
+     var canvas = document.getElementById("memeImage");
+     var ctx = canvas.getContext("2d");
 
-//     for (var i = 0; i < texts.length; i++) {
-//         ctx.font = "30px Comic Sans MS";
-//         ctx.fillStyle = "red";
-//         ctx.textAlign = "center";
-//         ctx.fillText(texts[i].innerHTML, 100, 100); 
-//     }
-// }
+     for (var i = 0; i < texts.length; i++) {
+         ctx.font = "30px Comic Sans MS";
+         ctx.fillStyle = "red";
+         ctx.textAlign = "center";
+         ctx.fillText(texts[i].innerHTML, 100, 100); 
+     }
+ }
 
 function addTextField() {
     var wrapper = document.getElementById("canvasWrapper"),

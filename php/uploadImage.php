@@ -1,7 +1,7 @@
 <?php
 class UploadImage {
     private $conn;
-    private $table_name = "upload_images";
+    private $table_name = "saved_images";
  
     public function __construct($db) {
         $this->conn = $db;
