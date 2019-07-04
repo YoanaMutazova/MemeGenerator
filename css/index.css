@@ -110,3 +110,8 @@ input[type=file] {
 #hiddenImage {
     opacity: 0;
 }
+
+.btn {
+    margin: 5px 5px 5px 5px;
+}
+

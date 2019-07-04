@@ -21,9 +21,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <body>
     <div id="templatesMenu">
-        <form action="">
+        <form id="searchFrom" action="">
             <input type="text" name="templateName" placeholder="Template name"/>
             <input type="submit" name="search" value="Search"/>
         </form>
@@ -43,17 +44,20 @@
             <form action="upload.php" method="post" enctype="multipart/form-data">
                 Select image to upload:
                 <input type="file" accept="image/*" name="image" onchange="loadFile(event)"/>
-                <input type="submit" name="submit" value="UPLOAD"/>
+                <input class="btn btn-success" type="submit" name="submit" value="UPLOAD"/>
             </form>
         </div>
         <div id="memeOptions">
             <!-- <form id="texts">
                 <input type="submit" id="submitText" value="Add" onclick="addText(event)"/>
             </form> -->
+            
             <div id="textOptions"></div>
-            <button id="saveMeme" onclick="saveMeme()">Save meme</button>
+            <button class="btn btn-primary" id="downloadMeme" onclick="downloadMeme()">Download meme</button>
+            <button class="btn btn-primary" id="saveMeme" onclick="saveMeme()">Save meme</button>
+            
         </div>
-        <button id="fieldsButton" onclick="addTextField()">Add text Field</button>
+        <button class="btn btn-primary" id="fieldsButton" onclick="addTextField()">Add text Field</button>
     </div>
 
     

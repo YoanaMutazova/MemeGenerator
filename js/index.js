@@ -51,6 +51,25 @@ function saveMeme() {
         xhr.send(blob);
     }, 'image/jpeg', 0.95);
 }
+function downloadMeme() {
+    addTextsToCanvas();
+    let canvasImage = document.getElementById('memeImage').toDataURL('image/png');
+
+    // this can be used to download any image from webpage to local disk
+    let xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = function () {
+        let a = document.createElement('a');
+        a.href = window.URL.createObjectURL(xhr.response);
+        a.download = 'image_name.jpg';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        a.remove()
+      };
+      xhr.open('GET', canvasImage); // This is to download the canvas Image
+      xhr.send();
+}
 
 // function fixBinary (bin) {
 //     var length = bin.length;
@@ -68,15 +87,17 @@ function addTextsToCanvas() {
     var texts = document.getElementsByClassName("memeText");
     var canvas = document.getElementById("memeImage");
     var ctx = canvas.getContext("2d");
-
+    
     for (var i = 0; i < texts.length; i++) {
         var currentText = texts[i];
 
-        ctx.font = currentText.font;
+        ctx.font = "Impact";
         ctx.fillStyle = currentText.color;
         ctx.textAlign = currentText.textAlign;
         ctx.fillText(texts[i].innerHTML, 100, 100);
+        ctx.strokeText(texts[i].innerHTML, 100, 100);
     }
+    
 }
 
 function addTextField() {
