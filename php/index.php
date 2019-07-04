@@ -47,9 +47,9 @@
             </form>
         </div>
         <div id="memeOptions">
-            <form id="texts">
+            <!-- <form id="texts">
                 <input type="submit" id="submitText" value="Add" onclick="addText(event)"/>
-            </form>
+            </form> -->
             <div id="textOptions"></div>
             <button id="saveMeme" onclick="saveMeme()">Save meme</button>
         </div>

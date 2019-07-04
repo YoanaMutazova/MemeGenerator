@@ -30,47 +30,27 @@ function selectTemplate(element) {
     }
 }
 
- function addText(event) {
-     event.preventDefault();
+function saveMeme() {
+    addTextsToCanvas();
 
-     var text = document.getElementById("memeText").value;
-     var memeTexts = document.getElementsByClassName("text");
+    var canvas = document.getElementById("memeImage");
 
-     var id = memeTexts == 0 ? 1 : memeTexts.length + 1;
+    canvas.toBlob(function(blob) {
+        var xhr = new XMLHttpRequest();
 
-     if (id >= 11) {
-         console.log("You cannot add more texts!");
-     } else {
-         var textBox = document.createElement("div");
-         textBox.className = "text text-" + id;
-         textBox.innerHTML = text;
+        xhr.open('POST', '../php/saveMeme.php', true);
 
-         var wrapper = document.getElementById("templateWrapper");
-         wrapper.appendChild(textBox);
-     }
- }
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log("uploaded");
+            } else {
+                console.log("error")
+            }
+        }
 
- function saveMeme() {
-     addTextsToCanvas();
-
-     var canvas = document.getElementById("memeImage");
-
-     canvas.toBlob(function(blob){
-         var xhr = new XMLHttpRequest();
-
-         xhr.open('POST', '../php/saveMeme.php', true);
-
-         xhr.onreadystatechange = function() {
-             if (xhr.readyState == 4 && xhr.status == 200) {
-                 console.log("uploaded");
-             } else {
-                 console.log("error")
-             }
-         }
-
-         xhr.send(blob);
-     }, 'image/jpeg', 0.95);
- }
+        xhr.send(blob);
+    }, 'image/jpeg', 0.95);
+}
 
 // function fixBinary (bin) {
 //     var length = bin.length;
@@ -84,18 +64,20 @@ function selectTemplate(element) {
 //     return buf;
 // }
 
- function addTextsToCanvas() {
-     var texts = document.getElementsByClassName("text");
-     var canvas = document.getElementById("memeImage");
-     var ctx = canvas.getContext("2d");
+function addTextsToCanvas() {
+    var texts = document.getElementsByClassName("memeText");
+    var canvas = document.getElementById("memeImage");
+    var ctx = canvas.getContext("2d");
 
-     for (var i = 0; i < texts.length; i++) {
-         ctx.font = "30px Comic Sans MS";
-         ctx.fillStyle = "red";
-         ctx.textAlign = "center";
-         ctx.fillText(texts[i].innerHTML, 100, 100); 
-     }
- }
+    for (var i = 0; i < texts.length; i++) {
+        var currentText = texts[i];
+
+        ctx.font = currentText.font;
+        ctx.fillStyle = currentText.color;
+        ctx.textAlign = currentText.textAlign;
+        ctx.fillText(texts[i].innerHTML, 100, 100);
+    }
+}
 
 function addTextField() {
     var wrapper = document.getElementById("canvasWrapper"),
@@ -188,14 +170,20 @@ function addTextField() {
         document.documentElement.removeEventListener('mouseup', stopDrag, false);
     }
 
-    var texts = document.getElementById("texts"),
-        memeText = document.createElement("input");
+    var textOptions = document.getElementById("textOptions");
+    var memeText = document.createElement("input");
 
     memeText.type = "text";
-    memeText.id = "memeText";
+    memeText.className = "memeText memeText-" + fieldNumber;
     memeText.placeholder = "Text #" + fieldNumber;
+    memeText.oninput = function() {
+        var text = memeText.value;
 
-    texts.appendChild(memeText);
+        textField.innerHTML = "";
+        textField.innerHTML = text;
+    }
+
+    textOptions.appendChild(memeText);
 
     var showButton = document.createElement("button");
 
@@ -209,15 +197,21 @@ function addTextField() {
         };
     }
 
-    texts.appendChild(showButton);
+    textOptions.appendChild(showButton);
 }
 
 function showTextOptions(number) {
-    var textOptions = document.getElementById("textOptions");
+    var textOptions = document.getElementById("textOptions"),
+        textField = document.getElementsByClassName("field-" + number)[0];
 
     var color = document.createElement("input");
     color.className = "textColor";
     color.type = "color";
+
+    color.oninput = function() {
+        textField.style.color = color.value;
+    }
+
     textOptions.appendChild(color);
 
     var fontSize = document.createElement("input");
@@ -225,53 +219,71 @@ function showTextOptions(number) {
     fontSize.type = "number";
     fontSize.min = 2;
     fontSize.max = 70;
+
+    fontSize.oninput = function() {
+        var value = fontSize.value;
+
+        if (value > 70) {
+            value = 70;
+        } else if (value < 2) {
+            value = 2;
+        }
+
+        textField.style.fontSize = value + "px";
+    }
+
     textOptions.appendChild(fontSize);
 
     var align = document.createElement("select");
     align.className = "textAlign";
     textOptions.appendChild(align);
 
-    var center = document.createElement("option");
-    center.value = "center";
-    center.innerHTML = "Center";
-    align.appendChild(center);
-
     var left = document.createElement("option");
     left.value = "left";
     left.innerHTML = "Left";
     align.appendChild(left);
+
+    var center = document.createElement("option");
+    center.value = "center";
+    center.innerHTML = "Center";
+    align.appendChild(center);
 
     var right = document.createElement("option");
     right.value = "right";
     right.innerHTML = "Right";
     align.appendChild(right);
 
-    var verticalAlign = document.createElement("select");
-    verticalAlign.className = "verticalAlign";
-    textOptions.appendChild(verticalAlign);
+    align.oninput = function() {
+        textField.style.textAlign = align.value;
+    }
 
-    var middle = document.createElement("option");
-    middle.value = "middle";
-    middle.innerHTML = "Middle";
-    verticalAlign.appendChild(middle);
-
-    var top = document.createElement("option");
-    top.value = "top";
-    top.innerHTML = "Top";
-    verticalAlign.appendChild(top);
-
-    var bottom = document.createElement("option");
-    bottom.value = "bottom";
-    bottom.innerHTML = "Bottom";
-    verticalAlign.appendChild(bottom);
-
-    var bold = document.createElement("checkbox");
+    var bold = document.createElement("input");
+    bold.type = "checkbox";
     bold.className = "bold";
+    bold.name = "bold";
     bold.value = "false";
     textOptions.appendChild(bold);
 
-    var italic = document.createElement("checkbox");
+    bold.oninput = function() {
+        if (bold.checked) {
+            textField.style.fontWeight = "bold";
+        } else {
+            textField.style.fontWeight = "normal";
+        }
+    }
+
+    var italic = document.createElement("input");
+    italic.type = "checkbox";
     italic.className = "italic";
+    italic.name = "italic";
     italic.value = "false";
     textOptions.appendChild(italic);
+
+    italic.oninput = function() {
+        if (italic.checked) {
+            textField.style.fontStyle = "italic";
+        } else {
+            textField.style.fontStyle = "normal";
+        }
+    }
 }

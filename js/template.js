@@ -11,8 +11,6 @@
     xhr.onreadystatechange = function() {
         var data = xhr.responseText;
 
-        console.log(data)
-
         if (xhr.readyState == 4 && xhr.status == 200) {
             var image = document.createElement("img");
             image.src = data.replace(/"/g, "").replace(/\\/g, "");

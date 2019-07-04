@@ -1,6 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<link rel="stylesheet" href="css/index.css">
+<html lang="bg">
+
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="css/template.css">
+
+    <title>Meme Generator</title>
+</head>
 
 <body>
     <div id="templateContainer">
@@ -9,6 +16,13 @@
                 <canvas id="memeImage"></canvas>
             </div>
         </div>
+    </div>
+
+    <div id="textOptions">
+        <form method="POST" id="addText">
+            <input type="text" id="newText">
+            <input type="submit" id="submitText" value="Добавете текст" onclick="addText(event)">
+        </form>
     </div>
 
     <div id="hiddenImage"></div>

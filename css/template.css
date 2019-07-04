@@ -1,0 +1,85 @@
+#templateContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0%;
+    top: 0;
+    background-color: #fff7e6;
+}
+
+#templateWrapper {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    top: 0px;
+    left: 50px;
+}
+
+#canvasWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#memeImage {
+    max-width: 100%;
+}
+
+#hiddenImage {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+}
+
+#textOptions {
+    position: absolute;
+    width: 280px;
+    height: 600px;
+    left: 700px;
+}
+
+.text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: blue;
+}
+
+.resizeHandle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 0;
+    right: 0;
+    background-color: #d5dbe3;
+}
+
+.textField {
+    position: absolute;
+    width: 100%;
+    height: 15%;
+    top: 0;
+    left: 0;
+    border: 1px dashed #fff;
+    outline: 1px dashed #000;
+    cursor: move;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#fieldsButton {
+    position: absolute;
+}
+
+.resizer {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    z-index: 2;
+}
