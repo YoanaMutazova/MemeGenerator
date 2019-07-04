@@ -7,11 +7,23 @@ class UploadImage {
         $this->conn = $db;
     }
 
-    function upload($image) {
+    function upload($data) {
         $query = "INSERT INTO " . $this->table_name . " (`image`) VALUES (?)";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $image);
+        $stmt->bindParam(1, $data);
+
+        $stmt->execute();
+     
+        return $stmt;
+    }
+
+    function uploadUser($userId) {
+        $query = "UPDATE " . $this->table_name . " SET `user_id` = (?) WHERE `id` = (SELECT id FROM " . $this->table_name 
+        . " ORDER BY `id` DESC LIMIT 1)";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $userId);
 
         $stmt->execute();
      

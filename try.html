@@ -1,17 +1,37 @@
-<!DOCTYPE html>
-<html lang="bg">
+<?php
+    include_once 'database.php';
+    include_once 'template.php';
 
-<head>
-    <meta charset="utf-8">
+    $database = new Database();
+    $db = $database->getConnection();
+    
+    $template = new Template($db);
 
-    <link rel="stylesheet" href="css/template.css">
+    $stmt = $template->getTemplates();
+    $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    <title>Meme Generator</title>
-</head>
+    function generateTemplates($templates) {
+        foreach ($templates as $t) {
+            echo '<p class="templateName">' . $t["name"] . '</p>';
+            echo '<img src="data:image/jpeg;base64,' . base64_encode($t["image"]) . '" class="template template-' . $t["id"] . '"/>';
+        }
+    }
+?>
 
-<body>
+    <!DOCTYPE html>
+    <html lang="bg">
 
-    <script src="js/try.js"></script>
-</body>
+    <head>
+        <meta charset="utf-8">
 
-</html>
+        <link rel="stylesheet" href="css/template.css">
+
+        <title>Meme Generator</title>
+    </head>
+
+    <body>
+
+        <script src="js/try.js"></script>
+    </body>
+
+    </html>

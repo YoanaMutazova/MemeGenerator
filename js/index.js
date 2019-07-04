@@ -41,63 +41,92 @@ function saveMeme() {
         xhr.open('POST', '../php/saveMeme.php', true);
 
         xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log("uploaded");
-            } else {
-                console.log("error")
-            }
+            var data = xhr.responseText;
+            console.log(data);
+            // if (xhr.readyState == 4 && xhr.status == 200) {
+            //     console.log("uploaded");
+            // } else {
+            //     console.log("error")
+            // }
         }
 
         xhr.send(blob);
     }, 'image/jpeg', 0.95);
+
+    var userId = getCookie("userId"),
+        params = { "userId": userId };
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST', '../php/saveMemeCreator.php', true);
+
+    xhr.setRequestHeader('Content-type', 'application/json');
+
+    xhr.onreadystatechange = function() {
+        var data = xhr.responseText;
+
+        console.log(data);
+    }
+
+    xhr.send(JSON.stringify(params));
 }
+
 function downloadMeme() {
     addTextsToCanvas();
-    let canvasImage = document.getElementById('memeImage').toDataURL('image/png');
+    var canvasImage = document.getElementById('memeImage').toDataURL('image/png');
 
-    // this can be used to download any image from webpage to local disk
-    let xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest();
     xhr.responseType = 'blob';
-    xhr.onload = function () {
-        let a = document.createElement('a');
+    xhr.onload = function() {
+        var a = document.createElement('a');
         a.href = window.URL.createObjectURL(xhr.response);
         a.download = 'image_name.jpg';
         a.style.display = 'none';
         document.body.appendChild(a);
         a.click();
         a.remove()
-      };
-      xhr.open('GET', canvasImage); // This is to download the canvas Image
-      xhr.send();
+    };
+    xhr.open('GET', canvasImage);
+    xhr.send();
 }
 
-// function fixBinary (bin) {
-//     var length = bin.length;
-//     var buf = new ArrayBuffer(length);
-//     var arr = new Uint8Array(buf);
-//
-//     for (var i = 0; i < length; i++) {
-//         arr[i] = bin.charCodeAt(i);
-//     }
-//
-//     return buf;
-// }
-
 function addTextsToCanvas() {
-    var texts = document.getElementsByClassName("memeText");
+    var texts = document.getElementsByClassName("textField");
     var canvas = document.getElementById("memeImage");
     var ctx = canvas.getContext("2d");
-    
-    for (var i = 0; i < texts.length; i++) {
-        var currentText = texts[i];
 
-        ctx.font = "Impact";
-        ctx.fillStyle = currentText.color;
-        ctx.textAlign = currentText.textAlign;
-        ctx.fillText(texts[i].innerHTML, 100, 100);
-        ctx.strokeText(texts[i].innerHTML, 100, 100);
+    for (var i = 0; i < texts.length; i++) {
+        var currentText = texts[i],
+            textBounds = currentText.getBoundingClientRect(),
+            canvasBounds = canvas.getBoundingClientRect();
+        fontText = "";
+
+        console.log(textBounds.left)
+
+        if (currentText.style.fontStyle == "italic") {
+            fontText += "italic ";
+        } else {
+            fontText += "normal ";
+        }
+
+        fontText += "normal";
+
+        if (currentText.style.fontWeight == "bold") {
+            fontText += " bold ";
+        } else {
+            fontText += " normal ";
+        }
+
+        fontText += currentText.style.fontSize + " sans-serif";
+
+        ctx.font = fontText;
+        ctx.fillStyle = currentText.style.color;
+
+        var left = (textBounds.left - canvasBounds.left);
+        var top = (textBounds.top - canvasBounds.top) + textBounds.height;
+        ctx.fillText(texts[i].innerHTML, left, top);
     }
-    
+
 }
 
 function addTextField() {
@@ -255,29 +284,6 @@ function showTextOptions(number) {
 
     textOptions.appendChild(fontSize);
 
-    var align = document.createElement("select");
-    align.className = "textAlign";
-    textOptions.appendChild(align);
-
-    var left = document.createElement("option");
-    left.value = "left";
-    left.innerHTML = "Left";
-    align.appendChild(left);
-
-    var center = document.createElement("option");
-    center.value = "center";
-    center.innerHTML = "Center";
-    align.appendChild(center);
-
-    var right = document.createElement("option");
-    right.value = "right";
-    right.innerHTML = "Right";
-    align.appendChild(right);
-
-    align.oninput = function() {
-        textField.style.textAlign = align.value;
-    }
-
     var bold = document.createElement("input");
     bold.type = "checkbox";
     bold.className = "bold";
@@ -307,4 +313,15 @@ function showTextOptions(number) {
             textField.style.fontStyle = "normal";
         }
     }
+}
+
+function getCookie(name) {
+    var cookiename = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(cookiename) == 0) return c.substring(cookiename.length, c.length);
+    }
+    return null;
 }
