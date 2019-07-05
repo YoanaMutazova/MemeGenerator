@@ -35,40 +35,45 @@ function saveMeme() {
 
     var canvas = document.getElementById("memeImage");
 
-    canvas.toBlob(function(blob) {
+    updateMeme(updateCreator);
+
+    function updateMeme(callback) {
+        canvas.toBlob(function(blob) {
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('POST', '../php/saveMeme.php', true);
+
+            xhr.onreadystatechange = function() {
+                var data = xhr.responseText;
+                // if (xhr.readyState == 4 && xhr.status == 200) {
+                //     console.log("uploaded");
+                // } else {
+                //     console.log("error")
+                // }
+            }
+
+            xhr.send(blob);
+        }, 'image/jpeg', 0.95);
+
+        callback();
+    }
+
+    function updateCreator() {
+        var userId = getCookie("userId"),
+            params = { "userId": userId };
+
         var xhr = new XMLHttpRequest();
 
-        xhr.open('POST', '../php/saveMeme.php', true);
+        xhr.open('POST', '../php/saveMemeCreator.php', true);
+
+        xhr.setRequestHeader('Content-type', 'application/json');
 
         xhr.onreadystatechange = function() {
             var data = xhr.responseText;
-            console.log(data);
-            // if (xhr.readyState == 4 && xhr.status == 200) {
-            //     console.log("uploaded");
-            // } else {
-            //     console.log("error")
-            // }
         }
 
-        xhr.send(blob);
-    }, 'image/jpeg', 0.95);
-
-    var userId = getCookie("userId"),
-        params = { "userId": userId };
-
-    var xhr = new XMLHttpRequest();
-
-    xhr.open('POST', '../php/saveMemeCreator.php', true);
-
-    xhr.setRequestHeader('Content-type', 'application/json');
-
-    xhr.onreadystatechange = function() {
-        var data = xhr.responseText;
-
-        console.log(data);
+        xhr.send(JSON.stringify(params));
     }
-
-    xhr.send(JSON.stringify(params));
 }
 
 function downloadMeme() {
@@ -101,8 +106,6 @@ function addTextsToCanvas() {
             canvasBounds = canvas.getBoundingClientRect();
         fontText = "";
 
-        console.log(textBounds.left)
-
         if (currentText.style.fontStyle == "italic") {
             fontText += "italic ";
         } else {
@@ -117,7 +120,13 @@ function addTextsToCanvas() {
             fontText += " normal ";
         }
 
-        fontText += currentText.style.fontSize + " sans-serif";
+        if (!currentText.style.fontSize) {
+            fontText += "16px"
+        } else {
+            fontText += currentText.style.fontSize;
+        }
+
+        fontText += " sans-serif";
 
         ctx.font = fontText;
         ctx.fillStyle = currentText.style.color;

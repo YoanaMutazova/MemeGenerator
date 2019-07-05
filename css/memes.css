@@ -1,0 +1,35 @@
+.memesContainer {
+    position: absolute;
+    width: 90%;
+    height: auto;
+    left: 5%;
+    top: 5%;
+    transform: translate(0, 0);
+}
+
+.item {
+    position: relative;
+    display: inline-block;
+    width: 320px;
+    height: 320px;
+    margin: 35px;
+}
+
+.meme {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: 270px;
+    overflow: hidden;
+}
+
+.memeImage {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.memeImage:hover {
+    cursor: pointer;
+}

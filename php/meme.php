@@ -8,7 +8,7 @@ class Meme {
     }
     
     function getMemes() {
-        $query = "SELECT image FROM " . $this->table_name;
+        $query = "SELECT id, image, user_id, rate FROM " . $this->table_name;
 
         $stmt = $this->conn->prepare($query);
 

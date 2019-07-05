@@ -19,8 +19,8 @@ class UploadImage {
     }
 
     function uploadUser($userId) {
-        $query = "UPDATE " . $this->table_name . " SET `user_id` = (?) WHERE `id` = (SELECT id FROM " . $this->table_name 
-        . " ORDER BY `id` DESC LIMIT 1)";
+        $query = "UPDATE " . $this->table_name . " SET `user_id` = (?) WHERE `id` = (SELECT MAX(`id`) FROM (SELECT * FROM " . $this->table_name 
+        . ") AS si)";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $userId);
