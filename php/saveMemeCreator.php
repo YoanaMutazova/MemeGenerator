@@ -9,6 +9,8 @@
     
     $image = new UploadImage($db);
 
+    var_dump($data["user"]);
+
     $stmt = $image->uploadUser($data["user"]);
 
     http_response_code(200);

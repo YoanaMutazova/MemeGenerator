@@ -59,8 +59,10 @@ function saveMeme() {
     }
 
     function updateCreator() {
-        var user = getCookie("username"),
+        var user = getCookie("user"),
             params = { "user": user };
+
+        console.log(user);
 
         var xhr = new XMLHttpRequest();
 
