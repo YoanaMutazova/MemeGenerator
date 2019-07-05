@@ -85,7 +85,11 @@
 }
 
 #fieldsButton {
-    position: absolute;
+    margin-bottom: 10px;
+}
+
+.textfield field- {
+    width: auto;
 }
 
 .resizer {
@@ -96,4 +100,11 @@
     bottom: 0;
     background-color: #000;
     z-index: 2;
+}
+
+#nav {
+    width: 100%;
+    position: fixed;
+    height: 70px;
+    bottom: 0%;
 }

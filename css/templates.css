@@ -43,3 +43,10 @@
 .templateImage:hover {
     cursor: pointer;
 }
+
+#nav {
+    width: 100%;
+    position: fixed;
+    height: 70px;
+    bottom: 0%;
+}
