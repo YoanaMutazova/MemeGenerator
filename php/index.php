@@ -12,70 +12,36 @@
 
     function generateTemplates($templates) {
         foreach ($templates as $t) {
+            echo '<div class="item">';
             echo '<p class="templateName">' . $t["name"] . '</p>';
-            echo '<img src="data:image/jpeg;base64,' . base64_encode($t["image"]) . '" class="template template-' . $t["id"] . '"/>';
+            echo '<div class="template">';
+            echo '<img src="data:image/jpeg;base64,' . base64_encode($t["image"]) . '" class="templateImage image-' . $t["id"] . 
+                '" onclick="showTemplate('. $t["id"] . ')"/>';
+            echo '</div>';
+            echo '</div>';
         }
     }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/templates.css">
 <body>
-    <div id="templatesMenu">
-        <form id="searchFrom" action="">
+    <div id="pad">
+        <form action="">
             <input type="text" name="templateName" placeholder="Template name"/>
             <input type="submit" name="search" value="Search"/>
         </form>
-        <?php
-            if (isset($row)) {
-                generateTemplates($row);
-            }
-        ?>
-    </div>
-    <div id="templateContainer">
-        <div id="templateWrapper">
-            <div id="canvasWrapper">
-                <canvas id="memeImage"></canvas>
-            </div>
+        <div class="pad">
+            <?php
+                if (isset($row)) {
+                    generateTemplates($row);
+                }
+            ?>
         </div>
-        <div id="templateForm">
-            <form action="upload.php" method="post" enctype="multipart/form-data">
-                Select image to upload:
-                <input type="file" accept="image/*" name="image" onchange="loadFile(event)"/>
-                <input class="btn btn-success" type="submit" name="submit" value="UPLOAD"/>
-            </form>
-        </div>
-        <div id="memeOptions">
-            <!-- <form id="texts">
-                <input type="submit" id="submitText" value="Add" onclick="addText(event)"/>
-            </form> -->
-            
-            <div id="textOptions"></div>
-            <button class="btn btn-primary" id="downloadMeme" onclick="downloadMeme()">Download meme</button>
-            <button class="btn btn-primary" id="saveMeme" onclick="saveMeme()">Save meme</button>
-            
-        </div>
-                 
-        <button class="btn btn-primary" id="fieldsButton" onclick="addTextField()">Add text Field</button>
-    </div>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-            fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-    <!-- Your share button code -->
-    <div class="fb-share-button" 
-        data-href="https://www.your-domain.com/your-page.html" 
-        data-layout="button">
     </div>
     
-    <script src="../js/index.js"></script>
+    <script src="../js/templates.js"></script>
 </body>
 </html>

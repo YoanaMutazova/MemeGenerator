@@ -1,3 +1,3 @@
 function showTemplate(id) {
-    window.location.href = "../template.html?id=" + id;
+    window.location.href = "../try.html?id=" + id;
 }

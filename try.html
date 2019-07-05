@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link rel="stylesheet" href="css/template.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Meme Generator</title>
+</head>
+
+<body>
+    <div id="templateContainer">
+        <div id="templateWrapper">
+            <div id="canvasWrapper">
+                <canvas id="memeImage"></canvas>
+            </div>
+        </div>
+        <div id="templateForm">
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                Select image to upload:
+                <input type="file" accept="image/*" name="image" onchange="loadFile(event)" />
+                <input class="btn btn-success" type="submit" name="submit" value="UPLOAD" />
+            </form>
+        </div>
+        <div id="textOptions">
+            <button class="btn btn-primary" id="fieldsButton" onclick="addTextField()">Add text Field</button>
+            <div id="memeOptions">
+                <button class="btn btn-primary" id="saveMeme" onclick="saveMeme()">Save meme</button>
+                <button class="btn btn-primary" id="downloadMeme" onclick="downloadMeme()">Download meme</button>
+
+                <div id="fb-root"></div>
+                <script>
+                    (function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                </script>
+
+                <div class="fb-share-button" data-href="https://www.your-domain.com/your-page.html" data-layout="button">
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div id="hiddenImage"></div>
+
+    <script src="js/template.js"></script>
+</body>
+
+</html>
