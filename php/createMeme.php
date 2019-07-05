@@ -48,10 +48,6 @@
             </form>
         </div>
         <div id="memeOptions">
-            <!-- <form id="texts">
-                <input type="submit" id="submitText" value="Add" onclick="addText(event)"/>
-            </form> -->
-            
             <div id="textOptions"></div>
             <button class="btn btn-primary" id="downloadMeme" onclick="downloadMeme()">Download meme</button>
             <button class="btn btn-primary" id="saveMeme" onclick="saveMeme()">Save meme</button>
@@ -70,7 +66,6 @@
     }(document, 'script', 'facebook-jssdk'));
     </script>
 
-    <!-- Your share button code -->
     <div class="fb-share-button" 
         data-href="https://www.your-domain.com/your-page.html" 
         data-layout="button">

@@ -58,7 +58,7 @@ function saveMeme() {
         canvas.toBlob(function(blob) {
             var xhr = new XMLHttpRequest();
 
-            xhr.open('POST', '../php/saveMeme.php', true);
+            xhr.open('POST', 'php/saveMeme.php', true);
 
             xhr.onreadystatechange = function() {
                 var data = xhr.responseText;
@@ -74,11 +74,9 @@ function saveMeme() {
         var user = getCookie("user"),
             params = { "user": user };
 
-        console.log(user);
-
         var xhr = new XMLHttpRequest();
 
-        xhr.open('POST', '../php/saveMemeCreator.php', true);
+        xhr.open('POST', 'php/saveMemeCreator.php', true);
 
         xhr.setRequestHeader('Content-type', 'application/json');
 
