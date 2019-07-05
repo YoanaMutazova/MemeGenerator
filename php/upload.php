@@ -34,3 +34,4 @@ catch(PDOException $e)
         echo "Please select an image file to upload.";
     }
  }
+?>
