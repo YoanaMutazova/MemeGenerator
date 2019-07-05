@@ -15,8 +15,7 @@
     $user_data = array(
         "id" => $row['id'],
         "faculty_number" => $row['faculty_number'],
-        "password" => $row['password'],
-        "role" => $row['role']
+        "password" => $row['password']
     );
 
     if (password_verify($data["password"], $user_data["password"])) {
@@ -24,7 +23,6 @@
         session_start();
 
         setcookie("user", $data["username"], time() + 24 * 60 * 60, "/");
-        setcookie("userRole", $user_data["role"], time() + 24 * 60 * 60, "/");
 
         unset($user_data["password"]);
 

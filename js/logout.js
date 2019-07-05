@@ -1,6 +1,5 @@
 function logout(sameDepth) {
     clearCookie("user");
-    clearCookie("userRole");
 
     if (sameDepth) {
         window.location.href = "login.html";
