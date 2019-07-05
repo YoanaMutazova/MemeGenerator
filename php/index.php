@@ -46,7 +46,7 @@
         </div>
     </div>
     <div id="nav"> 
-        <a href="./php/memes.php"> <button class="btn btn-primary" id="toRated">Like memes</button> </a>
+        <a href="./memes.php"> <button class="btn btn-primary" id="toRated">Like memes</button> </a>
     </div>
     
     <script src="../js/templates.js"></script>
