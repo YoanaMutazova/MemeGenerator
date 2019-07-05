@@ -1,8 +1,11 @@
-function logout() {
+function logout(sameDepth) {
     clearCookie("user");
-    clearCookie("userRole");
 
-    window.location.href = "../login.html";
+    if (sameDepth) {
+        window.location.href = "login.html";
+    } else {
+        window.location.href = "../login.html";
+    }
 }
 
 function clearCookie(name, domain, path) {
