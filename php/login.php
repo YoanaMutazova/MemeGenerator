@@ -14,6 +14,7 @@
 
     $user_data = array(
         "id" => $row['id'],
+        "username" => $row['username'],
         "faculty_number" => $row['faculty_number'],
         "password" => $row['password'],
         "role" => $row['role']
@@ -23,7 +24,7 @@
 
         session_start();
 
-        setcookie("userId", $user_data["id"], time() + 24 * 60 * 60, "/");
+        setcookie("user", $user_data["username"], time() + 24 * 60 * 60, "/");
         setcookie("userRole", $user_data["role"], time() + 24 * 60 * 60, "/");
 
         unset($user_data["password"]);

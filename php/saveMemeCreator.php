@@ -9,7 +9,7 @@
     
     $image = new UploadImage($db);
 
-    $stmt = $image->uploadUser($data["userId"]);
+    $stmt = $image->uploadUser($data["user"]);
 
     http_response_code(200);
     echo "uploaded";

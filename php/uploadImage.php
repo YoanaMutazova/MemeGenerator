@@ -18,12 +18,12 @@ class UploadImage {
         return $stmt;
     }
 
-    function uploadUser($userId) {
-        $query = "UPDATE " . $this->table_name . " SET `user_id` = (?) WHERE `id` = (SELECT MAX(`id`) FROM (SELECT * FROM " . $this->table_name 
+    function uploadUser($username) {
+        $query = "UPDATE " . $this->table_name . " SET `user` = (?) WHERE `id` = (SELECT MAX(`id`) FROM (SELECT * FROM " . $this->table_name 
         . ") AS si)";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $userId);
+        $stmt->bindParam(1, $username);
 
         $stmt->execute();
      

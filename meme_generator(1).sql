@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time:  5 юли 2019 в 01:57
+-- Generation Time:  5 юли 2019 в 12:04
 -- Версия на сървъра: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 

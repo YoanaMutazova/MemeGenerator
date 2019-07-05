@@ -16,7 +16,7 @@
             echo '<div class="meme">';
             echo '<img src="data:image/jpeg;base64,' . base64_encode($m["image"]) . '" class="memeImage image-' . $m["id"] . '"/>';
             echo '</div>';
-            echo '<p>Направено от: ' . $m[""]
+            echo '<p>Направено от: ' . $m["user"] . '</p>';
             echo '</div>';
         }
     }

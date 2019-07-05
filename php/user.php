@@ -26,7 +26,7 @@ class User {
     }    
 
     function getUser($username) {
-        $query = "SELECT id, faculty_number, password, role FROM " . $this->table_name . " WHERE username = ?";
+        $query = "SELECT id, username, faculty_number, password, role FROM " . $this->table_name . " WHERE username = ?";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $username);
