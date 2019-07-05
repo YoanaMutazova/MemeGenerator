@@ -47,7 +47,7 @@
     </div>
     <div id="nav"> 
         <a href="memes.php"><button class="btn btn-primary" id="toRated">Мемета</button></a>
-        <button class="btn btn-primary" id="logout" onclick="logout()">Изход</button>
+        <button class="btn btn-primary" id="logout" onclick="logout(false)">Изход</button>
     </div>
     
     <script src="../js/templates.js"></script>

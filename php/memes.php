@@ -47,7 +47,7 @@
 
     <div id="nav"> 
         <a href="index.php"><button class="btn btn-primary" id="toTemplates">Създай меме</button></a>
-        <button class="btn btn-primary" id="logout" onclick="logout()">Изход</button>
+        <button class="btn btn-primary" id="logout" onclick="logout(false)">Изход</button>
     </div>
     
     <script src="../js/memes.js"></script>
