@@ -28,6 +28,7 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/memes.css">
 
@@ -43,7 +44,13 @@
             }
         ?>
     </div>
+
+    <div id="nav"> 
+        <a href="index.php"><button class="btn btn-primary" id="toTemplates">Създай меме</button></a>
+        <button class="btn btn-primary" id="logout" onclick="logout()">Изход</button>
+    </div>
     
     <script src="../js/memes.js"></script>
+    <script src="../js/logout.js"></script>
 </body>
 </html>

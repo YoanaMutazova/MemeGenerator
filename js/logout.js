@@ -2,7 +2,7 @@ function logout() {
     clearCookie("user");
     clearCookie("userRole");
 
-    window.location.href = "/login.html";
+    window.location.href = "../login.html";
 }
 
 function clearCookie(name, domain, path) {

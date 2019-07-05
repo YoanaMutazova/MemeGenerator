@@ -64,3 +64,11 @@
 .like.disabled {
     cursor: not-allowed;
 }
+
+#nav {
+    width: 90%;
+    position: fixed;
+    height: 42px;
+    top: 20px;
+    text-align: right;
+}
