@@ -33,6 +33,8 @@
 
             ctx.drawImage(image, 0, 0, width, height);
 
+            hidden.removeChild(image);
+
         }
     }
 
