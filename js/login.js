@@ -35,7 +35,14 @@ function login(event) {
             var data = xhr.responseText;
 
             if (xhr.readyState == 4 && xhr.status == 200) {
-                window.location.href = "php/templates.php";
+                window.location.href = "php";
+                // if (data["role"] == "user") {
+                //     var path = window.location.origin + "/menu.html";
+                //     window.location.href = path;
+                // } else {
+                //     var path = window.location.origin + "/orders.html";
+                //     window.location.href = path;
+                // }
             } else if (xhr.status == 400) {
                 var error = document.getElementById("generalError");
                 var text = data.replace(/"/g, "");
